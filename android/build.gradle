@@ -19,3 +19,29 @@ buildscript {
 }
 
 apply plugin: "com.facebook.react.rootproject"
+
+
+android {
+    signingConfigs {
+        release {
+            storeFile file("my-release-key.keystore")
+            storePassword "your_keystore_password"
+            keyAlias "my-key-alias"
+            keyPassword "your_key_password"
+        }
+    }
+    buildTypes {
+        release {
+            // Additional configurations for release build type
+            // For example:
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            // Additional configurations for debug build type
+            // For example:
+            debuggable true
+        }
+    }
+}
